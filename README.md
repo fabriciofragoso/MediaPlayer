@@ -1,5 +1,4 @@
-# Informações:
-==========================================
+# Informações
 Alunos:
 -------
 Fabrício Fragoso Santos.
