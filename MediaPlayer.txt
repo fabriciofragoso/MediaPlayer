@@ -51,11 +51,11 @@ Widget::Widget(QWidget *parent) :
     sound = new QSound(".//music.wav");
 
     // Dimensoes da tela do player
-    this-> resize(480,180);
+    this-> resize(640,480);
     playbutton = new QPushButton(this);
     playbutton->setText("Play");
-    int buttonx =480*80/100;
-    int buttony =100;
+    int buttonx =640*80/100;
+    int buttony =400;
 
     // A posicao do botao play
     playbutton->setGeometry(buttonx,buttony,70,40);
@@ -66,15 +66,15 @@ Widget::Widget(QWidget *parent) :
 
     // A posicao do botao stop
     stopbutton= new QPushButton(this);
-    int buttonxx=480*60/100;
-    int buttonxy=100;
+    int buttonxx=640*10/100;
+    int buttonxy=400;
     stopbutton->setGeometry(buttonxx,buttonxy,70,40);
     stopbutton->setText("Stop");
     stopbutton->show();
 
     status=new QLabel(this);
-    int atx=480*50/100;
-    int aty=50;
+    int atx=640*50/100;
+    int aty=100;
     status->setGeometry(atx,aty,100,10);
     status-> show();
 
