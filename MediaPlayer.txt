@@ -1,0 +1,118 @@
+widget.h
+========================================
+#ifndef WIDGET_H
+#define WIDGET_H
+
+#include <QWidget>
+#include <QtMultimedia/QSound>
+#include <QPushButton>
+#include <QLabel>
+#include <QTimer>
+
+namespace Ui {
+class Widget;
+}
+
+class Widget : public QWidget
+{
+    Q_OBJECT
+
+public:
+    explicit Widget(QWidget *parent = 0);
+    ~Widget();
+
+private:
+    Ui::Widget *ui;
+    QSound *sound;
+    QPushButton *stopbutton;
+    QPushButton *playbutton;
+    QLabel *status;
+    QTimer *timer_raplay;
+private slots:
+    void play();
+    void stop();
+    void replay();
+};
+
+#endif // WIDGET_H
+
+==========================================
+widget. cpp
+
+#include "widget.h"
+#include "ui_widget.h"
+
+Widget::Widget(QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::Widget)
+{
+    // selecionando a musica a tocar
+    ui->setupUi(this);
+    sound = new QSound(".//music.wav");
+
+    // Dimensoes da tela do player
+    this-> resize(480,180);
+    playbutton = new QPushButton(this);
+    playbutton->setText("Play");
+    int buttonx =480*80/100;
+    int buttony =100;
+
+    // A posicao do botao play
+    playbutton->setGeometry(buttonx,buttony,70,40);
+    playbutton->show();
+
+    // titulo
+    this->setWindowTitle("Player");
+
+    // A posicao do botao stop
+    stopbutton= new QPushButton(this);
+    int buttonxx=480*60/100;
+    int buttonxy=100;
+    stopbutton->setGeometry(buttonxx,buttonxy,70,40);
+    stopbutton->setText("Stop");
+    stopbutton->show();
+
+    status=new QLabel(this);
+    int atx=480*50/100;
+    int aty=50;
+    status->setGeometry(atx,aty,100,10);
+    status-> show();
+
+    connect(playbutton,SIGNAL(clicked()),this,SLOT(play()));
+    connect(playbutton,SIGNAL(clicked()),this,SLOT(stop()));
+    timer_raplay = new QTimer();
+    connect(timer_raplay,SIGNAL(timeout()),this,SLOT(replay()));
+
+
+}
+
+Widget::~Widget()
+{
+    delete ui;
+}
+
+void Widget::play(){
+    timer_raplay->start(2000);
+
+}
+void Widget::stop(){
+    timer_raplay->stop();
+}
+void Widget::replay(){
+    sound->play();
+}
+
+========================================
+main.cpp
+
+#include "widget.h"
+#include <QApplication>
+
+int main(int argc, char *argv[])
+{
+    QApplication a(argc, argv);
+    Widget w;
+    w.show();
+
+    return a.exec();
+}
