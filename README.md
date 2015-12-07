@@ -1,7 +1,5 @@
-# Alunos:
+# Alunos:Fabrício Fragoso Santos. Rafael Diogo V.R. da Silva.
 ==========================================
-Fabrício Fragoso Santos.
-Rafael Diogo V.R. da Silva.
 
 Descrição do projeto: 
 ---------------------
